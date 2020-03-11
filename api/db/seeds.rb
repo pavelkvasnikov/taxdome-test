@@ -6,18 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Story.create!([
-                  { name: 'New'     } ,
-                  { name: 'Featured'} ,
-                  { name: 'Hot'     }
+Board.create!([
+                  { name: 'New'     , link: 'uniq_link1'} ,
+                  { name: 'Featured', link: 'uniq_link2'} ,
+                  { name: 'Hot'     , link: 'uniq_link3'}
               ]
 )
 
 Article.create!([
-                    {  name: 'test1', description: 'descr1', article_type: 'tweet', story_id: 1 },
-                    {  name: 'test2', description: 'descr2', article_type: 'tweet', story_id: 1 },
-                    {  name: 'test3', description: 'descr3', article_type: 'facebook', story_id: 2 },
-                    {  name: 'test4', description: 'descr4', article_type: 'insta', story_id: 3 },
+                    {  name: 'test_column1', board_id: 1 },
+                    {  name: 'test_column2', board_id: 1 },
+                    {  name: 'test_column5', board_id: 1 },
+                    {  name: 'test_column3', board_id: 2 },
+                    {  name: 'test_column4', board_id: 3 },
                 ]
 )
 
+Task.create!([
+                    {  title: 'test_column1', article_id: 1 },
+                    {  title: 'test_column2', article_id: 1 },
+                    {  title: 'test_column5', article_id: 1 },
+                    {  title: 'test_column3', article_id: 2 },
+                    {  title: 'test_column4', article_id: 3 },
+                ]
+)

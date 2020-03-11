@@ -4,3 +4,4 @@
 api/tmp
 api/log
 frontend/node_modules
+api/db/*.sqlite3

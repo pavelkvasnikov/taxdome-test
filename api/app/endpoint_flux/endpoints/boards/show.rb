@@ -1,23 +1,23 @@
 module Endpoints
-  module Articles
-    module Group
+  module Boards
+    module Show
       include EndpointFlux::Endpoint
 
       authorizator :skip
 
       validator :inline do
-        required(:search_type).value(included_in?: ::SearchService::GROUP_SEARCH_TYPES)
-        required(:field).value(:str?)
+        required(:link).value(:str?)
       end
-
       process do |request, response|
 
-        response.body[:articles] = ::SearchService.call(request.params)
+        response.body[:board] = Board.find_by(link: request.params[:link])
 
         [request, response]
       end
 
       decorator :add_status, 200
+      decorator :representable, decorator: 'Boards::Show',
+                 wrapped_in: :board
     end
   end
 end

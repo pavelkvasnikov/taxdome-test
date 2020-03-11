@@ -10,23 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_093224) do
+ActiveRecord::Schema.define(version: 3) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
     t.string "name", null: false
-    t.text "description", null: false
-    t.string "article_type", null: false
-    t.integer "story_id"
+    t.bigint "board_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["story_id"], name: "index_articles_on_story_id"
+    t.index ["board_id"], name: "index_articles_on_board_id"
+    t.index ["name"], name: "index_articles_on_name"
   end
 
-  create_table "stories", force: :cascade do |t|
+  create_table "boards", force: :cascade do |t|
     t.string "name", null: false
+    t.string "link", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["link"], name: "index_boards_on_link"
+    t.index ["name"], name: "index_boards_on_name"
   end
 
-  add_foreign_key "articles", "stories"
+  create_table "tasks", force: :cascade do |t|
+    t.string "title", null: false
+    t.bigint "article_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_tasks_on_article_id"
+    t.index ["title"], name: "index_tasks_on_title"
+  end
+
+  add_foreign_key "articles", "boards"
+  add_foreign_key "tasks", "articles"
 end

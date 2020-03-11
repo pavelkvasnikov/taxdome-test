@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :articles, only: %i[index create] do
-    get 'group', on: :collection
-    get 'group_with_totals', on: :collection
-  end
+  resources :articles, only: %i[index create destroy]
+  resources :boards, only: %i[index create show]
+  resources :tasks, only: %i[index create update destroy]
 end

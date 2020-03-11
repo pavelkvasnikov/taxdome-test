@@ -4,16 +4,12 @@ class ArticlesController < ApplicationController
     present 'articles/index'
   end
 
-  def group
-    present 'articles/group'
-  end
-
-  def group_with_totals
-    present 'articles/group_with_totals'
-  end
-
   def create
-    CreateArticleService params
+    present 'articles/create'
+  end
+
+  def destroy
+    present 'articles/destroy'
   end
 
 end

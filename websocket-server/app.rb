@@ -11,11 +11,9 @@ EventMachine.run do
   q = ch.queue('data-update')
   puts "WEBSOCKET STARTED"
   q.subscribe do |delivery_info, properties, payload|
-    puts "!!!!___ #{payload}"
-    if payload['event_type'] = 'data_updated'
-      @clients.each do |socket|
-        socket.send({route: 'articles'}.to_json)
-      end
+    puts "WEBSOKCET INCOMING MESSAGE = #{payload}"
+    @clients.each do |socket|
+      socket.send(payload.to_json)
     end
   end
 

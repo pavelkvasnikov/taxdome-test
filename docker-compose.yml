@@ -34,6 +34,7 @@ services:
       - "3001:3001"
     depends_on:
       - rabbitmq
+      - pgdata
     command: scripts/start-dev
 
   websocket-server:
@@ -61,3 +62,14 @@ services:
       - ~/docker-data/rabbitmq:/var/lib/rabbitmq
 #    logging:
 #      driver: none
+  pgdata:
+    image: 'postgres:alpine'
+#    ports:
+#      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: mystery
+      POSTGRES_USER: root
+    volumes:
+      - ~/docker-data/pgdata:/var/lib/postgresql/data
+    logging:
+      driver: none

@@ -6,14 +6,12 @@ module Endpoints
       authorizator :skip
 
       validator :inline do
-        required(:search_type).value(included_in?: ::SearchService::INDEX_SEARCH_TYPES)
-        optional(:field).value(:str?)
-        optional(:order).value(:str?)
+        required(:board_id).value(:number?)
       end
 
       process do |request, response|
 
-        response.body[:articles] = ::SearchService.call(request.params)
+        response.body[:articles] = Article.where(board_id: request.params[:board_id])
 
         [request, response]
       end

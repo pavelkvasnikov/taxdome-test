@@ -13,4 +13,4 @@ class Notification
 
 end
 
-::EventTrigger =  Notification.new
+::EventTrigger = Notification.new

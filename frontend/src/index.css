@@ -11,3 +11,53 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.board-container {
+  float: left;
+}
+
+.article-container {
+  min-width: 250px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 5px;
+  border-style: double;
+  padding: 6px;
+}
+
+.task-container {
+  border-radius: 22px;
+  border-color: #58ce4d;
+  border-style: groove;
+  margin-top: 27px;
+  margin-bottom: 12px;
+  padding: 20px;
+}
+
+.article-title {
+  font-weight: bold;
+  font-size: larger;
+  display: block;
+  border-bottom: #7dc5ad;
+  border-bottom-style: groove;
+}
+
+.board-title {
+  font-size: xx-large;
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+.links > a {
+  color: black;
+  margin-left: 10px;
+  display: inline-block;
+  font-size: 40px;
+  margin-right: 10px;
+  text-decoration: underline;
+}
+
+.selected {
+  border-radius: 10px;
+  background-color: #96c777;
+}

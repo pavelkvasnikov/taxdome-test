@@ -1,20 +1,27 @@
 module Endpoints
-  module Events
-    module Update
+  module Articles
+    module Create
       include EndpointFlux::Endpoint
 
-      validator :inline, &Validations::Concern::Events::Update.schema
+      validator :inline do
+        required(:name).value(:str?)
+        required(:board_id).value(:number?)
+      end
 
       process do |request, response|
-        service = Services::Workflow::Base.new(request.params[:complaint],
-                                               request.params[:current_user])
+        article = Article.create!(
+          name: request.params[:name],
+          board_id: request.params[:board_id]
+        )
 
-        service.call(event_name: request.params[:event_name])
-
+        response.body[:article] = article
+        ::EventTrigger.trigger_event({articles: 'created'})
         [request, response]
       end
 
       decorator :add_status, 201
+      decorator :representable,
+                decorator: 'Articles::Base', wrapped_in: :article
     end
   end
 end
