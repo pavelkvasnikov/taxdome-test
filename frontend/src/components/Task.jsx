@@ -17,7 +17,7 @@ export default class Task extends React.Component {
   updateTask = (params) => {
     fetch(`${BASE_URL}/tasks/${this.props.task.id}?${new URLSearchParams({
         id: this.props.task.id,
-        article_id: this.props.article.id,
+        article_id: params,
         title: this.state.value
     })}`,
       { method: 'PUT'})
